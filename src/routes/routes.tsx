@@ -1,9 +1,8 @@
-import { QueryClient } from "@tanstack/react-query";
 import { Outlet, createBrowserRouter } from "react-router-dom";
 import { QueryParamProvider } from "use-query-params";
 import { ReactRouter6Adapter } from "use-query-params/adapters/react-router-6";
 
-export const createRouter = (queryClient: QueryClient) =>
+export const createRouter = () =>
   createBrowserRouter([
     {
       path: "/",
@@ -23,7 +22,7 @@ export const createRouter = (queryClient: QueryClient) =>
           },
         },
         {
-          path: "/pokemon/:id",
+          path: "/pokemon/:name",
           lazy: async () => {
             const { PokemonDetails } = await import(
               "@/modules/pokemon/pages/pokemon-details"

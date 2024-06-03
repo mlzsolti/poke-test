@@ -4,8 +4,6 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { HelmetProvider } from "react-helmet-async";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@/lib/react-query";
-import { QueryParamProvider } from "use-query-params";
-import { ReactRouter6Adapter } from "use-query-params/adapters/react-router-6";
 
 type AppProviderProps = {
   children: React.ReactNode;
