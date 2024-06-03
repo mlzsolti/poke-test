@@ -8,9 +8,13 @@ import {
 } from "@/components/ui/select";
 import { SearchIcon } from "lucide-react";
 import { usePokemonTypes } from "../api/get-pokemon-types";
+import { StringParam, useQueryParam } from "use-query-params";
 
 export const Filters = () => {
   const { data: types } = usePokemonTypes();
+
+  const [type, setType] = useQueryParam("type", StringParam);
+  const [search, setSearch] = useQueryParam("search", StringParam);
 
   return (
     <div className="mb-4 flex items-center justify-between gap-4">
@@ -19,10 +23,12 @@ export const Filters = () => {
           type="text"
           placeholder="Search for pokemon..."
           className="pr-10 h-10 text-sm"
+          value={search || ""}
+          onChange={(e) => setSearch(e.target.value)}
         />
         <SearchIcon className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
       </div>
-      <Select>
+      <Select value={type || ""} onValueChange={(value) => setType(value)}>
         <SelectTrigger className="bg-white text-black px-4 py-2 rounded-md h-10 text-sm max-w-sm">
           <SelectValue placeholder="Filter by type" />
         </SelectTrigger>
