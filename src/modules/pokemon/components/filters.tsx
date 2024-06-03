@@ -9,6 +9,7 @@ import {
 import { SearchIcon } from "lucide-react";
 import { usePokemonTypes } from "../api/get-pokemon-types";
 import { StringParam, useQueryParam } from "use-query-params";
+import { Button } from "@/components/ui/button";
 
 export const Filters = () => {
   const { data: types } = usePokemonTypes();
@@ -16,8 +17,13 @@ export const Filters = () => {
   const [type, setType] = useQueryParam("type", StringParam);
   const [search, setSearch] = useQueryParam("search", StringParam);
 
+  const handleClear = () => {
+    setType(undefined);
+    setSearch(undefined);
+  };
+
   return (
-    <div className="mb-4 flex items-center justify-between gap-4">
+    <div className="mb-4 flex  gap-4">
       <div className="relative w-full max-w-sm">
         <Input
           type="text"
@@ -40,6 +46,7 @@ export const Filters = () => {
           ))}
         </SelectContent>
       </Select>
+      <Button onClick={handleClear}>Clear filters</Button>
     </div>
   );
 };
